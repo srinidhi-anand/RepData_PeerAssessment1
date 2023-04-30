@@ -29,7 +29,7 @@ histData <- processedData %>% group_by(date) %>% summarise(totalSteps=sum(steps)
 hist(histData$totalSteps,  xlab = 'Total Steps' , ylab = 'Days', col = 'blue', main="Total Steps Per Day", border= 'black')
 ```
 
-![](figure/unnamed-chunk-2-1.png)<!-- -->
+![](PA1_template_files/figure-html/unnamed-chunk-2-1.png)<!-- -->
 
 Calculate and report Mean / median of total steps per day 
 
@@ -60,7 +60,7 @@ intervalDataset <- processedData %>% group_by(interval) %>%  summarise(AvgSteps=
 plot(intervalDataset$interval ,intervalDataset$AvgSteps, type='l',  xlab = '5 Mins Time Interval' , ylab = 'Average Steps', col = 'blue', main="Average steps taken Per Interval")
 ```
 
-![](figure/unnamed-chunk-4-1.png)<!-- -->
+![](PA1_template_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
 
 ```r
 maxStepInterval <- intervalDataset$interval[which.max(intervalDataset$AvgSteps)]
@@ -111,7 +111,7 @@ NAfilledTotalStepsMedian = median(NAfilledHistData$totalSteps)
 hist(NAfilledHistData$totalSteps,  xlab = 'Steps Per Day' , ylab = 'Days', col = 'blue', main="Total Steps Per Day", border= 'black')
 ```
 
-![](figure/unnamed-chunk-7-1.png)<!-- -->
+![](PA1_template_files/figure-html/unnamed-chunk-7-1.png)<!-- -->
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
@@ -139,10 +139,10 @@ ggplot(data = averageDay, aes(interval, AvgSteps)) +  theme_bw() +
     panel.background = element_blank()) + 
   geom_line(color = "blue", linewidth = 0.5) + 
   labs(main = "Average Steps taken on Weekends vs Weekdays",
-       y = "Number of Steps", x = "Interval") +
- facet_grid( daytype ~.) + theme(strip.background=element_rect(fill="lightyellow"))
+       y = "Number of Steps", x = "Interval") + facet_wrap(.~daytype, nrow = 2) +
+ theme(strip.background=element_rect(fill="lightyellow"))
 ```
 
-![](figure/unnamed-chunk-9-1.png)<!-- -->
+![](PA1_template_files/figure-html/unnamed-chunk-9-1.png)<!-- -->
 
 From inferences, the plot displays more steps activity pattern on weekdays than on weekends

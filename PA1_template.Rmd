@@ -104,8 +104,9 @@ ggplot(data = averageDay, aes(interval, AvgSteps)) +  theme_bw() +
     panel.background = element_blank()) + 
   geom_line(color = "blue", linewidth = 0.5) + 
   labs(main = "Average Steps taken on Weekends vs Weekdays",
-       y = "Number of Steps", x = "Interval") +
- facet_grid( daytype ~.) + theme(strip.background=element_rect(fill="lightyellow"))
+       y = "Number of Steps", x = "Interval") + facet_wrap(.~daytype, nrow = 2) +
+ theme(strip.background=element_rect(fill="lightyellow"))
+
 ```
 
 From inferences, the plot displays more steps activity pattern on weekdays than on weekends
